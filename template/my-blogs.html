@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block start %}
+{% load static %}
+
+<title>{% block title %} My Blogs {% endblock %}</title>
+
+<div class="container my-blogs-container">
+  <!-- <div class="row my-blogs-head-row">
+    <div class="col-lg-12 my-blogs-head">
+        <h1>MY BLOGS</h1>
+        <h6>You can Update or Delete your blogs from here.</h6>
+        <h6><strong>NOTE: Once a blog is deleted, it will be deleted forever.</strong></h6>
+    </div>
+  </div>
+  <div class="row my-blogs-row" id="my-blogs-row">
+    <div class="col-lg-12 actual-table">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Blog Title</th>
+            <th scope="col">Is Approved</th>
+            <th scope="col">Views</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for blog in blogs_obj %}
+          <tr class="table-row">
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{blog.title}}</td>
+            <td>{{blog.is_approved}}</td>
+            <td>{{blog.total_views}}</td>
+            <td>{{blog.created_at|date:"M d, Y"}} {{blog.created_at|time:"h:i A"}}</td>
+            <td>
+              <a href="{%  url 'blogs:blog-update' blog.pk %}"><i class="bi bi-pen hover-color"></i></a>
+              <button id="delBlogBtn-{{blog.id}}" style="color: white;" onclick="delBlog(this.id)"><i class="bi bi-trash hover-color"></i></button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div> -->
+
+  <div class="row myBlogsRow">
+    <h1>MY BLOGS</h1>
+    <h6>You can manage your blogs from this page. REMEMBER, once a blog is deleted, it cannot be recovered.</h6>
+      <div class="myBlogsList">
+        {% if approvedBlogs|length > 0 %}
+        <h3>APPROVED BLOGS</h3>
+        <div class="scrollx">
+        {% for blog in approvedBlogs %}
+        <!-- {% if blog.is_approved == True %} -->
+        <div class="col-lg-3 col-md-6 col-10 indBlog">
+          <div class="blog-content approvedBlogs">
+              <img src="{{blog.image.url}}" alt="blog-img">
+              <h4>{{blog.title}}</h4>
+              <span>{{blog.created_at|date:"M d, Y"}} {{blog.created_at|time:"h:i A"}}</span><br>
+              <span>Is Approved: {{blog.is_approved}}</span><br>
+              <span>Total Views: {{blog.total_views}}</span>
+            <div class="btnList">
+              <a style="border-bottom-left-radius: 10px;" href="{% url 'blogs:preview-blog' blog.pk %}">View</a>
+              <a href="{% url 'blogs:blog-update' blog.pk %}">Edit</a>
+              <button id="delBlogBtn-{{blog.id}}" style="border-bottom-right-radius: 10px;" onclick="delBlog(this.id)">Delete</button>
+            </div>
+          </div>
+        </div>
+        <!-- {% endif %} -->
+        {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+
+      <div class="myBlogsList">
+        {% if notSentForApproval|length > 0 %}
+        <h3>NOT SENT FOR REVIEW</h3>
+        <div class="scrollx">
+        {% for blog in notSentForApproval %}
+        <!-- {% if blog.is_ready_for_review == False and blog.is_approved == False %} -->
+        <div class="col-lg-3 col-md-6 col-10 indBlog">
+          <div class="blog-content notReviwedBlog">
+              <img src="{{blog.image.url}}" alt="blog-img">
+              <h4>{{blog.title}}</h4>
+              <span>{{blog.created_at|date:"M d, Y"}} {{blog.created_at|time:"h:i A"}}</span><br>
+              <span>Is Approved: {{blog.is_approved}}</span><br>
+              <span>Total Views: {{blog.total_views}}</span>
+            <div class="btnList">
+              <a style="border-top-left-radius: 10px;" href="{% url 'blogs:preview-blog' blog.pk %}">View</a>
+              <a href="{% url 'blogs:blog-update' blog.pk %}">Edit</a>
+              <button id="delBlogBtn-{{blog.id}}" style="border-top-right-radius: 10px;" onclick="delBlog(this.id)">Delete</button>
+            </div>
+            <span class="approve-btn"><a href="{% url 'blogs:send-for-review' blog.pk %}">SEND FOR A REVIEW</a></span>
+          </div>
+        </div>
+        <!-- {% endif %} -->
+        {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="myBlogsList">
+        {% if pendingReview|length > 0 %}
+        <h3>PENDING REVIEW</h3>
+        <div class="scrollx">
+        {% for blog in pendingReview %}
+        <!-- {% if blog.is_ready_for_review == True and blog.is_approved == False %} -->
+        <div class="col-lg-3 col-md-6 col-10 indBlog">
+          <div class="blog-content approvalPending">
+              <img src="{{blog.image.url}}" alt="blog-img">
+              <h4>{{blog.title}}</h4>
+              <span>{{blog.created_at|date:"M d, Y"}} {{blog.created_at|time:"h:i A"}}</span><br>
+              <span>Is Approved: {{blog.is_approved}}</span><br>
+              <span>Total Views: {{blog.total_views}}</span>
+            <div class="btnList">
+              <a style="border-top-left-radius: 10px;" href="{% url 'blogs:preview-blog' blog.pk %}">View</a>
+              <a href="{% url 'blogs:blog-update' blog.pk %}">Edit</a>
+              <button id="delBlogBtn-{{blog.id}}" style="border-top-right-radius: 10px;" onclick="delBlog(this.id)">Delete</button>
+            </div>
+            {% if blog.is_ready_for_review == True %}
+            <span class="approve-btn"><a href="{% url 'blogs:send-for-review' blog.pk %}">WITHDRAW FROM A REVIEW</a></span>
+            {% else %}
+            <span class="approve-btn"><a href="{% url 'blogs:send-for-review' blog.pk %}">SEND FOR A REVIEW</a></span>
+            {% endif %}
+          </div>
+        </div>
+        <!-- {% endif %} -->
+        {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+  </div>
+</div>
+
+
+{% endblock %}

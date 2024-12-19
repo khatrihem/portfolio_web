@@ -1,0 +1,380 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block start %}
+
+<script src="{% static 'js/quotes.js' %}"></script>
+
+<div class="lander" id="lander">
+  <div>
+    <svg class="logo-sign" xmlns="http://www.w3.org/2000/svg" width="54" height="30" viewBox="-55 25 54 30" fill="#FFF">
+      <g class="logo-sign__box">
+        <polygon class="logo-sign__line" points="-1,37.333 -1,42.667 -3,44 -3,36" />
+        <polygon class="logo-sign__line" points="-5,33.333 -5,46.667 -7,48 -7,32" />
+        <polygon class="logo-sign__line" points="-9,29.333 -9,50.667 -11,52 -11,28" />
+        <polygon class="logo-sign__line" points="-13.5,25 -13,25.333 -13,54.667 -13.5,55 -15,54 -15,26" />
+        <polygon class="logo-sign__line" points="-17,28.667 -17,51.333 -19,50 -19,30" />
+        <polygon class="logo-sign__line" points="-21,32.667 -21,47.333 -23,46 -23,34" />
+        <polygon class="logo-sign__line" points="-25,36.667 -25,43.333 -27,42 -27,38" />
+      </g>
+    </svg>
+  </div>
+
+  <div class="container-fluid">
+    <!-- <div class="row header-img-row">
+      <div class="col-lg-6">
+        <div class="headerTxt">
+          <h1>KNOWLEDGE IS INCREASED BY SHARING BUT NOT BY HOLDING.</h1>
+          <span>Explore tools and blogs through a variety of interesting topics.</span>
+          <a href="#blogs-container">EXPLORE</a>
+        </div>
+      </div>
+      <div class="col-lg-6 header-img">
+        <img src="{% static 'img/blog-assests/homepage-img-4.svg' %}" alt="homepage-img">
+      </div>
+    </div> -->
+
+    <div class="row landingRow">
+      <div class="col-lg-12">
+        <div id="carouselLander" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselLander" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselLander" data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselLander" data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselLander" data-bs-slide-to="3"
+              aria-label="Slide 4"></button>
+          </div>
+          <div class="carousel-inner">
+
+            <!-- carausel item - 0 -->
+            <div class="carousel-item landingImg active">
+              <img src="{% static 'img/blog-assests/homepage-img.svg' %}" alt="homepage-img">
+            </div>
+
+            <!-- carausel item - 1 -->
+            <div class="carousel-item">
+              <img src="{% static 'img/blog-assests/featured-1.svg' %}" alt="homepage-img">
+              <div class="headerTxt carousel-caption d-md-block">
+                <h6>FEATURED</h6>
+                <h1>BURNWOOD</h1>
+                <span>Burnwood is an open source, cross-platform tool used to generate Windows Exploitation Packages (A
+                  Malware).</span>
+                <span>The tool is capable of generating Windows Executables consisting of a malware masking behind any
+                  normal file. The results could be used to study the vulnerabilities, and ultimately will help you
+                  prevent them.
+                  Burnwood provides two delivery methods, Email Based (Gmail) and Cloud Based (Google's Firebase). Both
+                  of these methods works on Google Services and has it's own pros and cons.</span>
+                <a href="#blogs-container">EXPLORE</a>
+              </div>
+            </div>
+
+            <!-- carausel item - 2 -->
+            <div class="carousel-item">
+              <img src="{% static 'img/blog-assests/featured-2.svg' %}" alt="homepage-img">
+              <div class="headerTxt carousel-caption d-md-block">
+                <h6>FEATURED</h6>
+                <h1>KEYLOGGER BUILDER</h1>
+                <span>Keylogger Builder is a standalone application to build multiple keyloggers.</span>
+                <span>A Keylogger Builder is an application using which you could build an EMAIL based Keylogger specifically for Windows. It is FUD and capable of running in the background ever after every reboot. Please note that this Keylogger isn't a RAT and cannot be stopped remotely unless the user themselves removes it manually. You'll have to change your emails password in order to stop receiving the logs.</span>
+                <a href="#blogs-container">EXPLORE</a>
+              </div>
+            </div>
+
+            <!-- carausel item - 3 -->
+            <div class="carousel-item">
+              <img src="{% static 'img/blog-assests/featured-3.svg' %}" alt="homepage-img">
+              <div class="headerTxt carousel-caption d-md-block">
+                <h6>FEATURED</h6>
+                <h1>BYPASS DEFENDER</h1>
+                <span>A script to bypass Windows Defender in order to carryout certain tasks.</span>
+                <span>Bypass Defender is a BASH script used to bypass Windows Defender. You can bypass applications with specific extensions or a specific application by defining it's abolute path or the filename. It is extremely useful to carryout a few tasks which Windows Defender doesn't allow by default.</span>
+                <a href="#blogs-container">EXPLORE</a>
+              </div>
+            </div>
+
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselLander"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselLander"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="bouncer">
+          <a class="btn-bounce bounce" href="#blogs-container"><i class="bi bi-caret-down-fill"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container openSourceContainer">
+    <div class="row">
+      <div class="col-lg-12 openSource">
+        <div class="openSourceContent">
+          <h1>OPEN SOURCE PROJECTS</h1>
+          <p>Most of the projects are open source that are licensed under the very permissive <strong>MIT</strong> and
+            <strong>BSD-3-Clause Licenses</strong>. Consider giving a star <strong><i class="bi bi-star-fill"></i></strong> on the official Github repository to
+            spread the news!</p>
+          <div class="openSourceComparison">
+            <h5>OPEN SOURCE</h5>
+            <ul>
+              <li><i class="bi bi-check-circle-fill checkGreen"></i> Free to use</li>
+              <li><i class="bi bi-x-circle-fill checkRed"></i> Continuous Updates</li>
+              <li><i class="bi bi-x-circle-fill checkRed"></i> No Customization</li>
+              <li><i class="bi bi-x-circle-fill checkRed"></i> More Features</li>
+              <li><i class="bi bi-check-circle-fill checkGreen"></i> Available Source</li>
+            </ul>
+          </div>
+          <div class="openSourceComparison">
+            <h5>PRO VERSION</h5>
+            <ul>
+              <li><i class="bi bi-check-circle-fill checkGreen"></i> On Demand Customization</li>
+              <li><i class="bi bi-check-circle-fill checkGreen"></i> More Features</li>
+              <li><i class="bi bi-check-circle-fill checkGreen"></i> Paid version</li>
+              <li><i class="bi bi-check-circle-fill checkGreen"></i> Continuous Updates</li>
+              <li><i class="bi bi-x-circle-fill checkRed"></i> Available Source</li>
+            </ul>
+          </div>
+          <a href="https://github.com/fortysev-en" target="_blank" class="viewOnGithubBtn">View on GitHub <i class="bi bi-github"></i></a>
+        </div>
+        <i class="bi bi-github bigGithub" style="margin-top: 0.3em;"></i>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container blogList" id="blogs-container">
+    <h1>MOST VIEWED BLOGS</h1>
+    <div class="row">
+      {% for blog in mostViewedBlogs|slice:":4" %}
+      {% if blog.is_approved %}
+      <div class="col-lg-3 col-md-6 col-10 blog-list">
+        <div class="blog-content">
+          <a href="{% url 'blogs:blog-detail' blog.slug %}">
+            <img src="{{blog.image.url}}" alt="blog-img">
+            <h4>{{blog.title}}</h4>
+            <p>{{blog.gist|safe}}</p><br>
+            <span>{{blog.created_at|date:"M d, Y"}} {{blog.created_at|time:"h:i A"}} by
+              {{blog.user.first_name}}</span><br>
+            <span>Total Views: {{blog.total_views}}</span>
+          </a>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <a href="{% url 'blogs:all-blogs' %}" class="loadMoreBtn">VIEW ALL <i class="bi bi-view-list"></i></a>
+  </div>
+
+
+  <div class="container blogList" style="margin-top: 12em !important;">
+    <h1>RECENTLY UPDATED BLOGS</h1>
+    <div class="row">
+      {% for blog in mostRecentBlogs|slice:":4" %}
+      {% if blog.is_approved %}
+      <div class="col-lg-3 col-md-6 col-10 blog-list">
+        <div class="blog-content">
+          <a href="{% url 'blogs:blog-detail' blog.slug %}">
+            <img src="{{blog.image.url}}" alt="blog-img">
+            <h4>{{blog.title}}</h4>
+            <p>{{blog.gist|safe}}</p><br>
+            <span>{{blog.updated_at|date:"M d, Y"}} {{blog.updated_at|time:"h:i A"}} by
+              {{blog.user.first_name}}</span><br>
+            <span>Total Views: {{blog.total_views}}</span>
+          </a>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <a href="{% url 'blogs:all-blogs' %}" class="loadMoreBtn">VIEW ALL <i class="bi bi-view-list"></i></a>
+  </div>
+
+
+  <div class="container contactContainer">
+    <div class="row">
+      <div class="col-lg-12 contactRow">
+        <div class="contactTxt">
+          <h1>CONTACT ME</h1>
+          <p>If you need any help with any of my products or services, feel free to drop me a line!</p>
+        </div>
+        <div class="contactBtn">
+          <a href="{% url 'blogs:contact' %}">CONTACT</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container accordionContainer">
+    <div class="row accordionRow">
+      <div class="col-lg-6">
+        <div class="faqImg">
+          <img src="{% static 'img/blog-assests/faq.svg' %}" alt="faq-img">
+        </div>
+      </div>
+      <div class="col-lg-6 faqCol">
+        <h1>FAQs</h1>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item accordionBorderRadiusTop accordionColor">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button class="accordion-button accordionBorderRadiusTop accordionBtnColor collapsed" type="button"
+                data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                aria-controls="flush-collapseOne">
+                Do you work as a Freelancer?
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+              data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">Yes, ofcourse! Feel free to get in touch and we'll discuss about your project. I'll be interested to work.</div>
+            </div>
+          </div>
+          <div class="accordion-item accordionColor">
+            <h2 class="accordion-header" id="flush-headingTwo">
+              <button class="accordion-button accordionBtnColor collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                On which technologies do you work on?
+              </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+              data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">Well, it completely depends on your project and requirements. The main technolgies I work upon are
+                <code>Python, HTML/CSS, ReactJS, Javascript, DJANGO, PostgreSQL</code> and many more. These are a few on which I work on regularly.</div>
+            </div>
+          </div>
+          <div class="accordion-item accordionColor">
+            <h2 class="accordion-header" id="flush-headingThree">
+              <button class="accordion-button accordionBtnColor collapsed" type="button"
+                data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false"
+                aria-controls="flush-collapseThree">
+                How long will a licence valid?
+              </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+              data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">Once you bought a licence, it is valid for lifetime on that registered machine only. Please take a note that these licences are <code>NON-TRANSFERABLE</code>.</div>
+            </div>
+          </div>
+          <!-- forth accordion -->
+          <div class="accordion-item accordionBorderRadiusBottom accordionColor">
+            <h2 class="accordion-header" id="flush-headingForth">
+              <button class="accordion-button accordionBorderRadiusBottom accordionBtnColor collapsed" type="button"
+                data-bs-toggle="collapse" data-bs-target="#flush-collapseForth" aria-expanded="false"
+                aria-controls="flush-collapseForth">
+                Why don't you have ads on your website?
+              </button>
+            </h2>
+            <div id="flush-collapseForth" class="accordion-collapse collapse" aria-labelledby="flush-headingForth"
+              data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">Who likes ads anyways? I developed this website to serve my users without any unnecessary distraction. Enjoy your ad-free experience.</div>
+            </div>
+          </div>
+          <!-- end forth accordion-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <div class="container cardsContainer">
+    <div class="row">
+      <h1>SEE SPECIFIC</h1>
+      <div class="col-lg-12 cardsRow">
+        <div class="cards">
+          <a href="{% url 'blogs:review-blog' %}">
+            <h4>BLOGS</h4>
+            <i class="bi bi-calendar2-check"></i>
+            <p>Browse through a variety of blogs.</p>
+          </a>
+
+          <a href="{% url 'blogs:user-manage' %}">
+            <h4>TOOLS</h4>
+            <i class="bi bi-people"></i>
+            <p>Checkout all the important tools.</p>
+          </a>
+
+          <a href="{% url 'blogs:admin-messages' %}">
+            <h4>WEB DEV</h4>
+            <i class="bi bi-envelope"></i>
+            <p>Blogs related to web development.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="container-fluid testimonialContainer">
+    <div class="row">
+      <div id="carouselTestimonial" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselTestimonial" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselTestimonial" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselTestimonial" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+
+        </div>
+        <div class="carousel-inner testimonialCarouselInner">
+          <!-- carausel item - 1 -->
+          <div class="carousel-item active">
+            <div class="testimonialTxt">
+              <i class="bi bi-quote"></i>
+              <div class="testimonialP">
+                <p id="quoteOne"></p>
+              <figcaption class="blockquote-footer">
+                <cite title="Source Title" id="quoteOneAuthor"></cite>
+              </figcaption>
+              </div>
+            </div>
+          </div>
+
+          <!-- carausel item - 2 -->
+          <div class="carousel-item">
+            <div class="testimonialTxt">
+              <i class="bi bi-quote"></i>
+              <div class="testimonialP">
+                <p id="quoteTwo"></p>
+              <figcaption class="blockquote-footer">
+                <cite title="Source Title" id="quoteTwoAuthor"></cite>
+              </figcaption>
+              </div>
+            </div>
+          </div>
+
+          <!-- carausel item - 3 -->
+          <div class="carousel-item">
+            <div class="testimonialTxt">
+              <i class="bi bi-quote"></i>
+              <div class="testimonialP">
+                <p id="quoteThree"></p>
+              <figcaption class="blockquote-footer">
+                <cite title="Source Title" id="quoteThreeAuthor"></cite>
+              </figcaption>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+{% endblock %}

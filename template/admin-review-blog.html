@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+<title>{% block title %} Pending Reviews {% endblock %}</title>
+{% load static %}
+{% block start %}
+
+<div class="preview" style="background-color: #00BFA6; color:#333;">
+  <h3>ADMIN ACCESS</h3>
+</div>
+
+<div class="container">
+  <div class="row adminRowHead">
+    <h3>PENDING REVIEWS</h3>
+    {% if readyForReview|length > 0 %}
+    {% for blog in readyForReview %}
+      <div class="col-lg-3 col-md-6 col-10 blog-list">
+        <div class="blog-content">
+            <img src="{{blog.image.url}}" alt="blog-img">
+            <h4>{{blog.title}}</h4>
+            <p>{{blog.gist|safe}}</p><br>
+            <span>{{blog.created_at|date:"M d, Y"}} {{blog.created_at|time:"h:i A"}} by
+              {{blog.user.first_name}}</span><br>
+            <span>Total Views: {{blog.total_views}}</span>
+          <div class="btnList">
+            <a style="border-top-left-radius: 10px;" href="{% url 'blogs:preview-blog' blog.pk %}">View</a>
+            <a href="{% url 'blogs:blog-update' blog.pk %}">Edit</a>
+            <button id="delBlogBtn-{{blog.id}}" style="border-top-right-radius: 10px;" onclick="delBlog(this.id)">Delete</button>
+          </div>
+          <span class="approve-btn"><a href="{% url 'blogs:publish-blog' blog.pk %}">APPROVE</a></span>
+        </div>
+      </div>
+    {% endfor %}
+    {% else %}
+    <div class="row noDataAvailable">
+      <h3>NO DATA AVAILABLE</h3>
+    </div>  
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

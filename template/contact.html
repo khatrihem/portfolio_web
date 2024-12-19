@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+<title>{% block title %} Contact {% endblock %}</title>
+
+{% load static %}
+{% block start %}
+<script src='https://www.google.com/recaptcha/api.js?render={{recaptcha_site_key}}'></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="contactPara">
+                I'm open for suggestions! -- If you've came up with an idea, I can help you develop it. In case you want to suggest me or want me to create a blog on a specific type of tool, feel free to get in touch. You can either directly contact me, or you can simply fillout the below form.
+            </div>
+
+            <div class="contactForm">
+                <form id="contact-form">
+                    {% csrf_token %}
+                    {% if user.is_authenticated %}
+                            <input id="name" name="name" class="form-input-name" type="text" value="{{request.user.first_name}}" placeholder="Name">
+                            <input id="email" name="email" class="form-input-email" type="text" value="{{request.user.email}}" placeholder="Email">
+                        {% else %}
+                            <input id="name" name="name" class="form-input-name" type="text" placeholder="Name">
+                            <input id="email" name="email" class="form-input-email" type="text" placeholder="Email">
+                    {% endif %}
+                    <textarea name="desc" id="desc" class="form-input-desc" placeholder="How can I help you?" rows="8"></textarea>
+                    <div class="row">
+                        <div class="btn-submit">
+                            <button type="submit">SUBMIT <i class="bi bi-send"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="recaptcha">
+                <p>This site is protected by reCAPTCHA and the <br> Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+                </p>
+                <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response"> 
+        </div>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+<script>
+    grecaptcha.ready(function () {
+        document.getElementById('contact-form').addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            grecaptcha.execute('{{recaptcha_site_key}}', { action: '' }).then(function (token) {
+                document.getElementById("g-recaptcha-response").value = token;
+                blogContact();
+            });
+        }, false);
+    });
+</script>
+{% endblock %}

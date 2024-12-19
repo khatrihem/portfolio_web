@@ -1,0 +1,6 @@
+
+.env
+*.pyc
+*.pem
+*.txt
+set.py

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block start %}
+{% load static %}
+
+<title>{% block title %} Search {% endblock %}</title>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 searchHead">
+            <h1>SEARCH RESULTS</h1>
+            <span>{{searchQuery}}</span>
+        </div>
+    </div>
+    <div class="row searchRow">
+        {% if searchResults|length > 0 %}
+        {% for blog in searchResults %}
+        <div class="col-lg-3 col-md-6 col-10 blog-list">
+            <div class="blog-content">
+                <a href="{% url 'blogs:blog-detail' blog.slug %}">
+                    <img src="{{blog.image.url}}" alt="blog-thumbnail">
+                    <h4>{{blog.title}}</h4>
+                    <p>{{blog.gist|safe}}</p><br>
+                    <span>{{blog.created_at|date:"M d, Y"}} {{blog.created_at|time:"h:i A"}} by
+                        {{blog.user.first_name}}</span><br>
+                    <span>Total Views: {{blog.total_views}}</span>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if searchUsers|length > 0 %}
+        {% for usr in searchUsers %}
+        <div class="col-lg-3 col-md-6 col-10 blog-list">
+            <div class="blog-content usrSearchResult">
+                {% if request.user.is_superuser %}
+                <a href="{% url 'blogs:admin-user-profile' usr.username %}">
+                {% else %}
+                <a href="{% url 'blogs:user-profile' usr.username %}">
+                {% endif %}
+                    {% if not usr.profile.profilePicture %}
+                    <img src="{% static 'img/blog-assests/default-profile-img.svg' %}" alt="profile-pic">
+                    {% else %}
+                    <img src="{{usr.profile.profilePicture.url}}" alt="profile-pic">
+                    {% endif %}
+                    <h4>{{usr.first_name}} {{usr.last_name}}</h4>
+                    <span>{{usr.email}}</span><br>
+                    {% if usr.is_superuser %}
+                    <span>User Type: SUPERUSER</span><br>
+                    {% elif usr.is_staff and not usr.is_superuser %}
+                    <span>User Type: Staff</span><br>
+                    {% else %}
+                    <span>User Type: Viewer</span><br>
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if searchResults|length == 0 and searchUsers|length == 0 %}
+        <div class="row noDataAvailable">
+            <h3>NO DATA AVAILABLE</h3>
+        </div>
+        {% endif %}
+
+
+    </div>
+</div>
+{% endblock %}
